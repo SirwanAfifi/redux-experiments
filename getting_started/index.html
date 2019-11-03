@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Todos/Goals</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.4/redux.js"></script>
   </head>
   <body>
     <div>
@@ -19,7 +20,6 @@
       <ul id="goals"></ul>
     </div>
 
-    <script src="./index.js"></script>
     <script>
       function generateId() {
         return (
@@ -106,7 +106,7 @@
         };
       }
 
-      const store = createStore(app);
+      const store = Redux.createStore(app);
 
       store.subscribe(() => {
         const { goals, todos } = store.getState();
