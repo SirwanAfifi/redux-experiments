@@ -98,7 +98,9 @@
         Redux.combineReducers({
           todos,
           goals
-        })
+        }),
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
       );
     </script>
     <script type="text/babel" src="./index.js"></script>
