@@ -36,34 +36,31 @@
       const ADD_GOAL = "ADD_GOAL";
       const REMOVE_GOAL = "REMOVE_GOAL";
 
+      // Action Creators
       function addTodoAction(todo) {
         return {
           type: ADD_TODO,
           todo
         };
       }
-
       function removeTodoAction(id) {
         return {
           type: REMOVE_TODO,
           id
         };
       }
-
       function toggleTodoAction(id) {
         return {
           type: TOGGLE_TODO,
           id
         };
       }
-
       function addGoalAction(goal) {
         return {
           type: ADD_GOAL,
           goal
         };
       }
-
       function removeGoalAction(id) {
         return {
           type: REMOVE_GOAL,
@@ -71,6 +68,7 @@
         };
       }
 
+      // Middlewares
       const checker = store => next => action => {
         if (
           action.type === ADD_TODO &&
@@ -88,7 +86,6 @@
 
         return next(action);
       };
-
       const logger = store => next => action => {
         console.group(action.type);
         console.log("The action: ", action);
@@ -98,6 +95,7 @@
         return result;
       };
 
+      // Reducers
       function todos(state = [], action) {
         switch (action.type) {
           case ADD_TODO:
@@ -114,7 +112,6 @@
             return state;
         }
       }
-
       function goals(state = [], action) {
         switch (action.type) {
           case ADD_GOAL:
@@ -126,6 +123,7 @@
         }
       }
 
+      // Create Store
       const store = Redux.createStore(
         Redux.combineReducers({
           todos,
@@ -134,6 +132,7 @@
         Redux.applyMiddleware(checker, logger)
       );
 
+      // Subscribtion
       store.subscribe(() => {
         const { goals, todos } = store.getState();
 
