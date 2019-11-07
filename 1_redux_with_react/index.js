@@ -112,7 +112,12 @@ class App extends React.Component {
 
   render() {
     const { store } = this.props;
-    const { todos, goals } = this.props.store.getState();
+    const { todos, goals, loading } = this.props.store.getState();
+
+    if (loading) {
+      return <h3>Loading</h3>
+    }
+
     return (
       <div>
         <Todos todos={todos} store={store} />
