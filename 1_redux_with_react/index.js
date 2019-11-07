@@ -4,8 +4,8 @@ function List(props) {
       {props.items.map(item => (
         <li key={item.id}>
           <span
-            onClick={() => props.toggle && props.toggle(item.id)}
-            style={{ textDecoration: item.complete ? "line-through" : "none" }}
+            onClick={() => props.toggle && props.toggle(item)}
+            style={{ textDecoration: item.completed ? "line-through" : "none" }}
           >
             {item.title}
           </span>
@@ -19,24 +19,51 @@ function List(props) {
 class Todos extends React.Component {
   addItem = e => {
     e.preventDefault();
-    const name = this.input.value;
+    const title = this.input.value;
     this.input.value = "";
 
-    this.props.store.dispatch(
-      addTodoAction({
+    return fetch(`http://localhost:3500/todos`, {
+      method: "POST",
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({
         id: generateId(),
-        name,
-        complete: false
+        title,
+        completed: false
       })
-    );
+    })
+      .then((data) => data.json())
+      .then(todo => {
+        this.props.store.dispatch(
+          addTodoAction(todo)
+        );
+      })
+      .catch(() => {
+        alert("There was an error. Try again.")
+      })
+
+
   };
 
   removeItem = todo => {
     this.props.store.dispatch(removeTodoAction(todo.id));
+    return fetch(`http://localhost:3500/todos/${todo.id}`, { method: "DELETE" })
+      .catch(() => {
+        this.props.store.dispatch(addTodoAction(todo));
+      })
   };
 
-  toggleItem = id => {
-    this.props.store.dispatch(toggleTodoAction(id));
+  toggleItem = todo => {
+    this.props.store.dispatch(toggleTodoAction(todo.id));
+    fetch(`http://localhost:3500/todos/${todo.id}`, {
+      method: "PATCH",
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({
+        completed: !todo.completed
+      })
+    })
+      .catch(() => {
+        this.props.store.dispatch(toggleTodoAction(id));
+      })
   };
 
   render() {

@@ -41,7 +41,7 @@
             return state.filter(todo => todo.id !== action.id);
           case TOGGLE_TODO:
             return state.map(todo =>
-              todo.id !== action.id
+              todo.id !== action.todo.id
                 ? todo
                 : Object.assign({}, todo, {
                     complete: !todo.complete
@@ -85,10 +85,10 @@
           id
         };
       }
-      function toggleTodoAction(id) {
+      function toggleTodoAction(todo) {
         return {
           type: TOGGLE_TODO,
-          id
+          todo
         };
       }
       function addGoalAction(goal) {
