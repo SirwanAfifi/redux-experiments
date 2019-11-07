@@ -1,0 +1,16 @@
+{
+  "name": "1_redux_with_react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "json-server": "^0.14.0",
+    "npm-run-all": "^4.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "json-server --p 3500 -r api.routes.json todos.json"
+  },
+  "author": "Sirwan Afifi",
+  "license": "ISC"
+}
