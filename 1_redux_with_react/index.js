@@ -7,7 +7,7 @@ function List(props) {
             onClick={() => props.toggle && props.toggle(item.id)}
             style={{ textDecoration: item.complete ? "line-through" : "none" }}
           >
-            {item.name}
+            {item.title}
           </span>
           <button onClick={() => props.remove(item)}>X</button>
         </li>
@@ -97,7 +97,17 @@ class App extends React.Component {
   componentDidMount() {
     const { store } = this.props;
 
-    store.subscribe(() => this.forceUpdate());
+    Promise.all([
+      fetch('http://localhost:3500/todos?_limit=20')
+    ]).then(([todos]) => todos.json())
+      .then(todos => {
+        store.dispatch(receiveDataAction(todos));
+      })
+
+    store.subscribe(() => {
+      console.log(store.getState())
+      this.forceUpdate()
+    });
   }
 
   render() {

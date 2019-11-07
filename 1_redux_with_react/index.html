@@ -30,6 +30,7 @@
       const TOGGLE_TODO = "TOGGLE_TODO";
       const ADD_GOAL = "ADD_GOAL";
       const REMOVE_GOAL = "REMOVE_GOAL";
+      const RECEIVE_DATA = "RECEIVE_DATA";
 
       // Reducers
       function todos(state = [], action) {
@@ -46,6 +47,8 @@
                     complete: !todo.complete
                   })
             );
+          case RECEIVE_DATA:
+            return action.todos;
           default:
             return state;
         }
@@ -90,6 +93,12 @@
         return {
           type: REMOVE_GOAL,
           id
+        };
+      }
+      function receiveDataAction(todos) {
+        return {
+          type: RECEIVE_DATA,
+          todos
         };
       }
 
