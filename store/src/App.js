@@ -50,7 +50,7 @@ export default class App extends Component {
         <Header />
         <div className="row">
           <CategoryList categories={categories} />
-          <ProductList products={products} />
+          <ProductList products={products} store={store} />
         </div>
       </Layout>
     );
