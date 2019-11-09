@@ -9,6 +9,7 @@ import { Layout } from './components/Shared/Layout';
 import { Header } from './components/Shared/Header';
 import { ProductList } from './components/Product/List';
 import { CategoryList } from './components/Category/List';
+import { CartList } from './components/Cart/List';
 import { Loading } from './components/Shared/Loading';
 
 export default class App extends Component {
@@ -39,7 +40,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { categories, products, productLoading } = store.getState();
+    const { categories, products, productLoading, carts } = store.getState();
 
     if (productLoading) {
       return <Loading />
@@ -51,6 +52,9 @@ export default class App extends Component {
         <div className="row">
           <CategoryList categories={categories} />
           <ProductList products={products} store={store} />
+        </div>
+        <div className="row">
+          <CartList carts={carts} store={store} />
         </div>
       </Layout>
     );
