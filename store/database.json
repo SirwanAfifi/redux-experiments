@@ -16,5 +16,10 @@
       "price": 8900
     }
   ],
+  "categories": [
+    { "title": "Category1" },
+    { "title": "Category1" },
+    { "title": "Category1" }
+  ],
   "carts": []
 }

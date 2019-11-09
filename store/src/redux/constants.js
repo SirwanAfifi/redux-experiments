@@ -1,4 +1,5 @@
 export const LOAD_PRODUCT_DATA = 'LOAD_PRODUCT_DATA';
 export const LOAD_CART_DATA = 'LOAD_CART_DATA';
+export const LOAD_CATEGORY_DATA = 'LOAD_CATEGORY_DATA';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';

@@ -1,6 +1,7 @@
 import {
     LOAD_PRODUCT_DATA,
     LOAD_CART_DATA,
+    LOAD_CATEGORY_DATA,
     ADD_TO_CART,
     REMOVE_FROM_CART
 } from "./constants";
@@ -37,6 +38,14 @@ export const carts = (state = [], action) => {
             return state.concat([action.product]);
         case REMOVE_FROM_CART:
             return state.filter(cart => cart.productId !== action.productId);
+        default:
+            return state;
+    }
+}
+export const categories = (state = [], action) => {
+    switch (action.type) {
+        case LOAD_CATEGORY_DATA:
+            return action.categories;
         default:
             return state;
     }

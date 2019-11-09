@@ -1,6 +1,7 @@
 import {
     LOAD_PRODUCT_DATA,
     LOAD_CART_DATA,
+    LOAD_CATEGORY_DATA,
     ADD_TO_CART,
     REMOVE_FROM_CART
 } from "./constants";
@@ -15,6 +16,12 @@ export function loadCartDataAction(products) {
     return {
         type: LOAD_CART_DATA,
         products
+    }
+}
+export function loadCategoryDataAction(categories) {
+    return {
+        type: LOAD_CATEGORY_DATA,
+        categories
     }
 }
 export function addToCartAction(product) {
