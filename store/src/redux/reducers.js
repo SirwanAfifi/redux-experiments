@@ -8,7 +8,7 @@ import {
 export const productLoading = (state = true, action) => {
     switch (action.type) {
         case LOAD_PRODUCT_DATA:
-            return true;
+            return false;
         default:
             return state;
     }
@@ -16,7 +16,7 @@ export const productLoading = (state = true, action) => {
 export const cartLoading = (state = true, action) => {
     switch (action.type) {
         case LOAD_CART_DATA:
-            return true;
+            return false;
         default:
             return state;
     }
