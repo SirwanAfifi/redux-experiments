@@ -1,5 +1,7 @@
-import store from "./store";
+import configureStore from "./store";
 import * as actions from "./actions";
+
+const store = configureStore();
 
 store.subscribe(() => {
   console.log("Store changed!");
