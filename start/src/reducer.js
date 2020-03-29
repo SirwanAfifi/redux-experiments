@@ -1,4 +1,5 @@
 import { addTodo, removeTodo } from "./actions";
+import { createReducer } from "@reduxjs/toolkit";
 
 export default function reducer(state = { todos: [] }, action) {
   switch (action.type) {
@@ -16,3 +17,16 @@ export default function reducer(state = { todos: [] }, action) {
       return state;
   }
 }
+
+createReducer(
+  { todos: [] },
+  {
+    addTodo: (state, action) => {
+      state.todos.push(action.payload);
+    },
+    removeTodo: (state, action) => {
+      const index = state.todos.findIndex(todo => todo.id === action.payload);
+      state.todos.splice(index);
+    }
+  }
+);
